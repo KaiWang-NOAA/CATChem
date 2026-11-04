@@ -498,6 +498,15 @@ if(CATCHEM_BUILD_CCPP)
   add_subdirectory(drivers/ccpp)
 endif()
 
+if(TARGET GOCART2G AND TARGET Process_Library)
+  target_compile_options(
+    Process_Library
+    PRIVATE
+      -fpp-name=/opt/intel/oneapi/compiler/2025.0/bin/fpp
+      -Qoption,fpp,-P
+  )
+endif()
+
 if(CATCHEM_BUILD_NUOPC)
   find_package(MPI COMPONENTS Fortran REQUIRED)
   add_subdirectory(drivers/nuopc)
